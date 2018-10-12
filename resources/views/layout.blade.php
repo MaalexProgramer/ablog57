@@ -13,7 +13,7 @@
 		<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 	</head>
 	<body>
-		<div class="preload"></div>
+    <div class="preload"></div>
 		<header class="space-inter">
 			<div class="container container-flex space-between">
 				<figure class="logo"><img src="img/logo.png" alt=""></figure>
@@ -25,17 +25,17 @@
 						<li><a href="archive.html" class="text-uppercase">Archive</a></li>
 						<li><a href="contact.html" class="text-uppercase">Contact</a></li>
 					</ul>
-				</nav>
+        </nav>
 			</div>
 		</header>
 
 		<!-- Contenido -->
 		@yield('content')
-		
+
 		<section class="footer">
 			<footer>
 				<div class="container">
-					<figure class="logo"><img src="img/logo.png" alt=""></figure>
+          <figure class="logo"><img src="img/logo.png" alt=""></figure>
 					<nav>
 						<ul class="container-flex space-center list-unstyled">
 							<li><a href="index.html" class="text-uppercase c-white">home</a></li>
