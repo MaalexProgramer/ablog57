@@ -11,3 +11,7 @@ Route::get('/', function () {
 Route::get('posts', function () {
   return Post::all();
 });
+
+Route::get('admin', function () {
+	return view('admin.dashboard');
+});
