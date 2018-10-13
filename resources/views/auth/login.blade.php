@@ -35,20 +35,16 @@
 			<p class="login-box-msg">Ingresa tus datos para iniciar sesión</p>
 
 			<form role="form" method="POST" action="{{ route('login') }}">
-					{{ csrf_field() }}
+				@csrf
 
 				<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} has-feedback">
 					<input type="email"
 								class="form-control"
-								placeholder="Email"
+								placeholder="Correo electrónico"
 								name="email"
 								value="{{ old('email') }}"
 								required autofocus>
-					@if ($errors->has('email'))
-							<span class="help-block">
-									<strong>{{ $errors->first('email') }}</strong>
-							</span>
-					@endif
+					{!! $errors->first('email', '<div class="text-danger">:message</div>') !!}
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} has-feedback">
@@ -57,11 +53,7 @@
 							placeholder="Contraseña"
 							name="password"
 							required>
-					@if ($errors->has('password'))
-							<span class="help-block">
-									<strong>{{ $errors->first('password') }}</strong>
-							</span>
-					@endif
+					{!! $errors->first('password', '<div class="text-danger">:message</div>') !!}
 					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 				<div class="row">
