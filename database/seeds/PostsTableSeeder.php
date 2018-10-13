@@ -1,5 +1,6 @@
 <?php
 
+use App\Tag;
 use App\Post;
 use App\Category;
 use Carbon\Carbon;
@@ -16,6 +17,7 @@ class PostsTableSeeder extends Seeder
   {
     Post::truncate();
     Category::truncate();
+    Tag::truncate();
 
     $category = new Category;
     $category->name = "Categoría 1";
@@ -28,6 +30,26 @@ class PostsTableSeeder extends Seeder
     $category = new Category;
     $category->name = "Categoría 3";
     $category->save();
+
+    $tag = new Tag;
+    $tag->name = "Etiqueta 1";
+    $tag->save();
+
+    $tag = new Tag;
+    $tag->name = "Etiqueta 2";
+    $tag->save();
+
+    $tag = new Tag;
+    $tag->name = "Etiqueta 3";
+    $tag->save();
+
+    $tag = new Tag;
+    $tag->name = "Etiqueta 4";
+    $tag->save();
+
+    $tag = new Tag;
+    $tag->name = "Etiqueta 5";
+    $tag->save();
 
     $post = new Post;
     $post->title = "Lorem ipsum";
