@@ -1,20 +1,19 @@
 <?php
 
 use App\Post;
+use Symfony\Component\HttpKernel\Fragment\RoutableFragmentRenderer;
+use Illuminate\Routing\RouteGroup;
 
-Route::get('/', function () {
-	$posts = Post::latest('published_at')->get();
+Route::get('/', 'PagesController@home');
 
-	return view('welcome', compact('posts'));
+Route::get('home', 'HomeController@index');
+
+Route::group([
+  'prefix' => 'admin',
+  'namespace' => 'Admin',
+  'middleware' => 'auth'], function () {
+    Route::get('posts', 'PostsController@index');
 });
-
-Route::get('posts', function () {
-	return Post::all();
-});
-
-Route::get('home', function () {
-	return view('admin.dashboard');
-})->middleware('auth');
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
