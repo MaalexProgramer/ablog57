@@ -15,9 +15,8 @@
   <h1>Dashboard</h1>
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">ista de publicaciones</h3>
+      <h3 class="box-title">Lista de publicaciones</h3>
     </div>
-    <!-- /.box-header -->
     <div class="box-body">
       <table id="posts-table" class="table table-bordered table-striped">
         <thead>
