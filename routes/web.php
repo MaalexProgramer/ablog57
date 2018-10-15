@@ -1,10 +1,7 @@
 <?php
 
-use App\Post;
-use Symfony\Component\HttpKernel\Fragment\RoutableFragmentRenderer;
-use Illuminate\Routing\RouteGroup;
-
 Route::get('/', 'PagesController@home');
+Route::get('blog/{id}', 'PostsController@show');
 
 Route::group([
   'prefix'      => 'admin',
