@@ -44,11 +44,23 @@
                 </div>
                 <input name="published_at" type="text" class="form-control pull-right" id="datepicker">
               </div>
-              <!-- /.input group -->
             </div>
+						<div class="form-group">
+							<label>Categorías</label>
+							<select name="category_id" class="form-control select2">
+								<option value="">Seleciona una categoría</option>
+								@foreach ($categories as $category)
+									<option value="{{ $category->id }}">{{ $category->name }}</option>
+								@endforeach
+							</select>
+							{!! $errors->first('category_id', '<span class="help-block">:message</span>') !!}
+						</div>
             <div class="form-group">
               <label>Extracto de la publicación</label>
               <textarea type="text" name="excerpt" class="form-control" placeholder="Ingresa un extracto de la publicación"></textarea>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block">Guardar publicación</button>
             </div>
           </div>
         </div>

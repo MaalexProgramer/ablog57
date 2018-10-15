@@ -3,17 +3,16 @@
 @section('header')
   <h1>
     POSTS
-    <small>Listado de Posts</small>
+    <small>Listado</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+    <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
     <li class="active">Posts</li>
   </ol>
 @endsection
 
 @section('content')
-  <h1>Dashboard</h1>
-  <div class="box">
+  <div class="box box-primary">
     <div class="box-header">
       <h3 class="box-title">Lista de publicaciones</h3>
     </div>
@@ -34,6 +33,10 @@
               <td>{{ $post->title }}</td>
               <td>{{ $post->excerpt }}</td>
               <td>
+                <a href="#"
+                  class="btn btn-xs btn-default"
+                  target="_blank"
+                ><i class="fa fa-eye"></i></a>
                 <a href="#" class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></a>
                 <a href="#" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
               </td>
@@ -58,14 +61,7 @@
 
   <script>
     $(function () {
-      $('#posts-table').DataTable({
-        'paging'      : true,
-        'lengthChange': false,
-        'searching'   : false,
-        'ordering'    : true,
-        'info'        : true,
-        'autoWidth'   : false
-      })
-    })
+      $('#posts-table').DataTable();
+    });
   </script>
 @endpush

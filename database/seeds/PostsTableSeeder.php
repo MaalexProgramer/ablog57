@@ -51,6 +51,10 @@ class PostsTableSeeder extends Seeder
     $tag->name = "Etiqueta 5";
     $tag->save();
 
+    $tag = new Tag;
+    $tag->name = "Etiqueta 6";
+    $tag->save();
+
     $post = new Post;
     $post->title = "Lorem ipsum";
     $post->excerpt = "Extracto de Lorem ipsum";
