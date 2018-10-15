@@ -28,6 +28,18 @@ class PostsController extends Controller
   
   public function store(Request $request)
   {
+    $this->validate($request, ['title' => 'required']);
+
+    $post = Post::create([
+      'title' => $request->get('title'),
+      'url' => str_slug($request->get('title'))
+    ]);
+
+    return redirect()->route('admin.posts.edit', $post);
+  }
+  
+  /* public function store(Request $request)
+  {
     $this->validate($request, [
       'title'    => 'required',
       'body'     => 'required',
@@ -50,7 +62,7 @@ class PostsController extends Controller
 
     //$post = Post::create( $request->all() );
     //return redirect()->route('admin.posts.index');
-  }
+  } */
 
   /**
    * Display the specified resource.
@@ -69,9 +81,9 @@ class PostsController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function edit($id)
+  public function edit(Post $post)
   {
-      //
+    return view('admin.posts.edit', compact('post'));
   }
 
   /**
