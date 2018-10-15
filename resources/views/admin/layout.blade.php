@@ -267,11 +267,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
         <section class="content-header">
           @yield('header')
         </section>
-
-        @yield('content')
+    
+        <!-- Main content -->
+        <section class="content">
+          @if (session()->has('flash'))
+            <div class="alert alert-success">{{ session('flash') }}</div>
+          @endif
+    
+          @yield('content')
+        </section>
       </div>
       <!-- /.content-wrapper -->
 

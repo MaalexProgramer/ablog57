@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Tag;
 use App\Post;
+use App\Category;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Category;
-use App\Tag;
 
 class PostsController extends Controller
 {
@@ -24,16 +25,23 @@ class PostsController extends Controller
 
     return view('admin.posts.create', compact('categories', 'tags'));
   }
-
-  /**
-   * Store a newly created resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\Response
-   */
+  
   public function store(Request $request)
   {
-      //
+    //return $request->all();
+    $post = new Post;
+    $post->title = $request->get('title');
+    $post->body = $request->get('body');
+    $post->excerpt = $request->get('excerpt');
+    $post->published_at = Carbon::parse($request->get('published_at'));
+    $post->category_id = $request->get('category_id');
+    $post->save();
+    $post->tags()->attach($request->get('tags'));
+
+    return back()->with('flash', 'Su publicación ha sido creada');
+
+    //$post = Post::create( $request->all() );
+    //return redirect()->route('admin.posts.index');
   }
 
   /**
