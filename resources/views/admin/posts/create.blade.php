@@ -22,15 +22,20 @@
             <h3 class="box-title">Crear una publicaciones</h3>
           </div>
           <div class="box-body">
-            <div class="form-group">
+            <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
               <label>Título de la publicación</label>
-              <input type="text" name="title" class="form-control" placeholder="Ingresa aquí el título de la publicación">
+              <input name="title" type="text"
+                class="form-control"
+                value="{{ old('title') }}"
+                placeholder="Ingresa aquí el título de la publicación">
+              {!! $errors->first('title', '<span class="help-block">:message</span>') !!}
             </div>
           </div>
           <div class="box-body">
-            <div class="form-group">
+            <div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}">
               <label>Contenido de la publicación</label>
-              <textarea id="editor" rows="10" type="text" name="body" class="form-control" placeholder="Ingresa el contenido completo de la publicación"></textarea>
+              <textarea id="editor" rows="10" type="text" name="body" class="form-control" placeholder="Ingresa el contenido completo de la publicación">{{ old('body') }}</textarea>
+              {!! $errors->first('body', '<span class="help-block">:message</span>') !!}
             </div>
           </div>
         </div>
@@ -44,32 +49,46 @@
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                <input name="published_at" type="text" class="form-control pull-right" id="datepicker">
+                <input name="published_at"
+                  class="form-control pull-right"
+                  value="{{ old('published_at') }}"
+                  type="text"
+                  id="datepicker">
               </div>
             </div>
-						<div class="form-group">
+						<div class="form-group {{ $errors->has('category_id') ? 'has-error' : '' }}">
 							<label>Categorías</label>
 							<select name="category_id" class="form-control select2">
 								<option value="">Seleciona una categoría</option>
 								@foreach ($categories as $category)
-									<option value="{{ $category->id }}">{{ $category->name }}</option>
+                  <option value="{{ $category->id }}"
+                      {{ old('category_id') == $category->id ? 'selected' : '' }}
+                    >{{ $category->name }}
+                  </option>
 								@endforeach
 							</select>
 							{!! $errors->first('category_id', '<span class="help-block">:message</span>') !!}
             </div>
-            <div class="form-group">
+            <div class="form-group {{ $errors->has('tags') ? 'has-error' : '' }}">
 							<label>Etiquetas</label>
               <select name="tags[]" class="form-control select2"
                 multiple="multiple"
                 data-placeholder="Seleccione una o más etiquetas" style="width: 100%;">
                 @foreach ($tags as $tag)
-                  <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                  <option {{ collect(old('tags'))->contains($tag->id) ? 'selected' : '' }} value="{{ $tag->id }}">
+                    {{ $tag->name }}
+                  </option>
                 @endforeach
               </select>
+							{!! $errors->first('tags', '<span class="help-block">:message</span>') !!}
             </div>
-            <div class="form-group">
+            <div class="form-group {{ $errors->has('excerpt') ? 'has-error' : '' }}">
               <label>Extracto de la publicación</label>
-              <textarea name="excerpt" type="text" class="form-control" placeholder="Ingresa un extracto de la publicación"></textarea>
+              <textarea name="excerpt"
+                type="text"
+                class="form-control"
+                placeholder="Ingresa un extracto de la publicación">{{ old('excerpt') }}</textarea>
+							{!! $errors->first('excerpt', '<span class="help-block">:message</span>') !!}
             </div>
             <div class="form-group">
               <button type="submit" class="btn btn-primary btn-block">Guardar publicación</button>
