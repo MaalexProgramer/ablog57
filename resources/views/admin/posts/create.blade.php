@@ -37,6 +37,16 @@
         <div class="box box-primary">
           <div class="box-body">
             <div class="form-group">
+              <label>Fecha de publicación:</label>
+              <div class="input-group date">
+                <div class="input-group-addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                <input name="published_at" type="text" class="form-control pull-right" id="datepicker">
+              </div>
+              <!-- /.input group -->
+            </div>
+            <div class="form-group">
               <label>Extracto de la publicación</label>
               <textarea type="text" name="excerpt" class="form-control" placeholder="Ingresa un extracto de la publicación"></textarea>
             </div>
@@ -46,3 +56,20 @@
     </form>
   </div>
 @endsection
+
+@push('styles')
+  <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="/adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+@endpush
+
+@push('scripts')
+  <!-- bootstrap datepicker -->
+  <script src="/adminlte/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+
+  <script>
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    })
+  </script>
+@endpush
