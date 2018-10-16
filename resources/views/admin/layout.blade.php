@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html>
+<html lang="{{ config('app.locale') }}">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -271,13 +267,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <section class="content-header">
           @yield('header')
         </section>
-    
+
         <!-- Main content -->
         <section class="content">
           @if (session()->has('flash'))
             <div class="alert alert-success">{{ session('flash') }}</div>
           @endif
-    
+
           @yield('content')
         </section>
       </div>
@@ -382,6 +378,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     @stack('scripts')
 
     <!-- AdminLTE App -->
-    <script src="/adminlte/js/adminlte.min.js"></script>
+		<script src="/adminlte/js/adminlte.min.js"></script>
+
+		@include('admin.posts.create')
 	</body>
 </html>

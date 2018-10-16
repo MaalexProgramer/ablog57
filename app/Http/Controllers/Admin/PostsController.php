@@ -16,96 +16,59 @@ class PostsController extends Controller
     $posts = Post::all();
 
     return view('admin.posts.index', compact('posts'));
-  }
-  
-  public function create()
-  {
-    $categories = Category::all();
-    $tags = Tag::all();
+	}
 
-    return view('admin.posts.create', compact('categories', 'tags'));
-  }
-  
-  public function store(Request $request)
-  {
-    $this->validate($request, ['title' => 'required']);
+/* 	public function create()
+	{
+		$categories = Category::all();
+		$tags = Tag::all();
 
-    $post = Post::create([
-      'title' => $request->get('title'),
-      'url' => str_slug($request->get('title'))
-    ]);
+		return view('admin.posts.create', compact('categories', 'tags'));
+	} */
 
-    return redirect()->route('admin.posts.edit', $post);
-  }
-  
-  /* public function store(Request $request)
-  {
-    $this->validate($request, [
-      'title'    => 'required',
-      'body'     => 'required',
-      'category_id' => 'required',
-      'excerpt'  => 'required',
-      'tags'     => 'required'
-    ]);
+	public function store(Request $request)
+	{
+		$this->validate($request, [
+			'title'    => 'required'
+		]);
 
-    $post = new Post;
-    $post->title = $request->get('title');
-    $post->url = str_slug($request->get('title'));
-    $post->body = $request->get('body');
-    $post->excerpt = $request->get('excerpt');
-    $post->published_at = $request->has('published_at') ? Carbon::parse($request->get('published_at')) : null;
-    $post->category_id = $request->get('category_id');
-    $post->save();
-    $post->tags()->attach($request->get('tags'));
+		$post = Post::create([
+			'title' => $request->get('title'),
+			'url'   => str_slug($request->get('title'))
+		]);
 
-    return back()->with('flash', 'Su publicación ha sido creada');
+		return redirect()->route('admin.posts.edit', $post);
+	}
 
-    //$post = Post::create( $request->all() );
-    //return redirect()->route('admin.posts.index');
-  } */
+	public function edit(Post $post)
+	{
+		$categories = Category::all();
+		$tags = Tag::all();
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function show($id)
-  {
-      //
-  }
+		return view('admin.posts.edit', compact('categories', 'tags', 'post'));
+	}
 
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function edit(Post $post)
-  {
-    return view('admin.posts.edit', compact('post'));
-  }
+	public function update(Post $post, Request $request)
+	{
+		$this->validate($request, [
+			'title'    => 'required',
+			'body'     => 'required',
+			'category_id' => 'required',
+			'excerpt'  => 'required',
+			'tags'     => 'required'
+		]);
 
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function update(Request $request, $id)
-  {
-      //
-  }
+		$post->title = $request->get('title');
+		$post->url = str_slug($request->get('title'));
+		$post->body = $request->get('body');
+		$post->excerpt = $request->get('excerpt');
+		$post->published_at = $request->has('published_at') ? Carbon::parse($request->get('published_at')) : null;
+		$post->category_id = $request->get('category_id');
+		$post->save();
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function destroy($id)
-  {
-      //
-  }
+		//$post->tags()->attach($request->get('tags'));
+		$post->tags()->sync($request->get('tags'));
+
+		return back()->with('flash', 'Su publicación ha sido guardada');
+	}
 }
