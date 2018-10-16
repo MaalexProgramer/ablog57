@@ -63,7 +63,7 @@ class PostsTableSeeder extends Seeder
 		$post->published_at = Carbon::now()->subDays(4);
 		$post->category_id = 1;
 		$post->save();
-		$post->tags()->attach(Tag::create(['name' => 'Etiqueta 1']));
+		//$post->tags()->attach(Tag::create(['name' => 'Etiqueta 1']));
 
 		$post = new Post;
 		$post->title = "Cicero";
@@ -73,7 +73,6 @@ class PostsTableSeeder extends Seeder
 		$post->published_at = Carbon::now()->subDays(2);
 		$post->category_id = 2;
 		$post->save();
-		$post->tags()->attach(Tag::create(['name' => 'Etiqueta 2']));
 
 		$post = new Post;
 		$post->title = "Li Europan lingues";
@@ -83,7 +82,6 @@ class PostsTableSeeder extends Seeder
 		$post->published_at = Carbon::now()->subDays(1);
 		$post->category_id = 2;
 		$post->save();
-		$post->tags()->attach(Tag::create(['name' => 'Etiqueta 3']));
 
 		$post = new Post;
 		$post->title = "Muy lejos, más allá...";
@@ -93,6 +91,16 @@ class PostsTableSeeder extends Seeder
 		$post->published_at = Carbon::now();
 		$post->category_id = 1;
 		$post->save();
-		$post->tags()->attach(Tag::create(['name' => 'Etiqueta 4']));
+
+		// Llenar la tabla post_tag
+		for ($i=1; $i <=4 ; $i++) {
+			$post = Post::find($i);
+
+			for ($j=1; $j <=2 ; $j++) {
+				// Asignarle al Post un id de la Etiqueta (Tag)
+				// attach - Adjuntar
+				$post->tags()->attach(rand(1, 6));
+			}
+		}
 	}
 }

@@ -1,14 +1,15 @@
 @extends('admin.layout')
+
 @section('header')
-<h1>
-	POSTS
-	<small>Crear publicación</small>
-</h1>
-<ol class="breadcrumb">
-	<li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
-	<li><a href="{{ route('admin.posts.index') }}"><i class="fa fa-list"></i> Posts</a></li>
-	<li class="active">Crear</li>
-</ol>
+	<h1>
+		POSTS
+		<small>Crear publicación</small>
+	</h1>
+	<ol class="breadcrumb">
+		<li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+		<li><a href="{{ route('admin.posts.index') }}"><i class="fa fa-list"></i> Posts</a></li>
+		<li class="active">Crear</li>
+	</ol>
 @endsection
 
 @section('content')

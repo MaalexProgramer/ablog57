@@ -28,9 +28,7 @@ class PostsController extends Controller
 
 	public function store(Request $request)
 	{
-		$this->validate($request, [
-			'title'    => 'required'
-		]);
+		$this->validate($request, ['title' => 'required']);
 
 		$post = Post::create([
 			'title' => $request->get('title'),
@@ -53,7 +51,7 @@ class PostsController extends Controller
 		$this->validate($request, [
 			'title'    => 'required',
 			'body'     => 'required',
-			'category_id' => 'required',
+			'category' => 'required',
 			'excerpt'  => 'required',
 			'tags'     => 'required'
 		]);
@@ -63,12 +61,14 @@ class PostsController extends Controller
 		$post->body = $request->get('body');
 		$post->excerpt = $request->get('excerpt');
 		$post->published_at = $request->has('published_at') ? Carbon::parse($request->get('published_at')) : null;
-		$post->category_id = $request->get('category_id');
+		$post->category_id = $request->get('category');
 		$post->save();
 
 		//$post->tags()->attach($request->get('tags'));
 		$post->tags()->sync($request->get('tags'));
 
-		return back()->with('flash', 'Su publicación ha sido guardada');
+		return redirect()
+				->route('admin.posts.edit', $post)
+				->with('flash', 'Su publicación ha sido guardada');
 	}
 }
