@@ -128,7 +128,7 @@ cite .img-cite, .cite .img-cite{
 	padding: 45px;
 	text-align: center;
 	color: #ffffff;
-	
+
 }
 .footer footer .logo{
 	opacity: 0.4;
@@ -213,7 +213,7 @@ a.btn-bar{
 	border: 0;
 	background: #f7f9fc;
 	resize: vertical;
-	padding: 25px 0 0 15px; 
+	padding: 25px 0 0 15px;
 }
 .page-contact .form-contact .send-message a{
 	display: block;
@@ -237,7 +237,7 @@ a.btn-bar{
 	display: block;
 	text-align: center;
 }
-      
+
 .custom-wrapper.open {
     height: 9em;
 }
@@ -265,7 +265,7 @@ a.btn-bar{
     position: absolute;
     top: 18px;
     right: 7px;
-    
+
 }
 
 .buttons-social-media-share {
@@ -276,8 +276,25 @@ a.btn-bar{
   margin: 0;
   padding: 0;
 }
+
 .buttons-social-media-share .share-buttons li {
   list-style-type: none;
   float: left;
   margin-right: 10px;
+}
+
+.overlay {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	color: white;
+	font-size: 30px;
+	background-color: rgba(0,0,0, .7);
+}
+
+.gallery-photos{
+	overflow: hidden;
 }
