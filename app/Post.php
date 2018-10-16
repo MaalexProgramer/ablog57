@@ -2,13 +2,14 @@
 
 namespace App;
 
+use App\Photo;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
   protected $guarded = [];
-  
+
   protected $dates = ['published_at'];
 
   public function getRouteKeyName()
@@ -24,8 +25,14 @@ class Post extends Model
 	public function tags()
 	{
 		return $this->belongsToMany(Tag::class);
-  }
-  
+	}
+
+	// Un Post podrá tener varias fotos
+	public function photos()
+	{
+		return $this->hasMany(Photo::class);
+	}
+
   public function scopePublished($query)
   {
     $query->whereNotNull('published_at')
