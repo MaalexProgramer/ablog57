@@ -15,7 +15,13 @@ class Post extends Model
   public function getRouteKeyName()
   {
     return 'url';
-  }
+	}
+
+	public function setTitleAttribute($title)
+	{
+		$this->attributes['title'] = $title;
+		$this->attributes['url'] = str_slug($title);
+	}
 
   public function category()  // $post->category->name
   {
