@@ -13,6 +13,9 @@
 		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    
     @stack('styles')
 	</head>
 	<body>

@@ -47,5 +47,7 @@
 					</div>
 			</article>
 		@endforeach
-	</section>
+  
+    {{ $posts->links() }}
+  </section>
 @endsection

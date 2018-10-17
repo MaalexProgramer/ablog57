@@ -208,10 +208,15 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Profile</a>
+                      <a href="#" class="btn btn-default btn-flat">{{ __('Profile') }}</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button class="btn btn-default btn-flat fa fa-sign-out">
+                          {{ __('Sign out') }}
+                        </button>
+                      </form>
                     </div>
                   </li>
                 </ul>
@@ -270,9 +275,7 @@
 
         <!-- Main content -->
         <section class="content">
-          @if (session()->has('flash'))
-            <div class="alert alert-success">{{ session('flash') }}</div>
-          @endif
+          @include('partials.flash-message')
 
           @yield('content')
         </section>

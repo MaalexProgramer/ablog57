@@ -30,6 +30,6 @@ class PhotosController extends Controller
     $photoPath = str_replace('storage', 'public', $photo->url);
     Storage::delete($photoPath);
 
-    return back()->with('flash', 'Foto eliminada');
+    return back()->with('success', 'Foto eliminada');
   }
 }

@@ -70,6 +70,6 @@ class PostsController extends Controller
 
 		return redirect()
 				->route('admin.posts.edit', $post)
-				->with('flash', 'Su publicación ha sido guardada');
+				->with('success', 'Su publicación ha sido guardada');
 	}
 }
