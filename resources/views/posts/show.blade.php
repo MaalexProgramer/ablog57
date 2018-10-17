@@ -43,6 +43,8 @@
         @include('partials.disqus-script')
       </div><!-- .comments -->
     </div>
+  
+    {{ $posts->links() }}
   </article>
 @endsection
 
