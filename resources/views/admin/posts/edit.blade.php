@@ -20,9 +20,6 @@
 
 			<div class=" col-md-8">
 				<div class="box box-primary">
-					<div class="box-header">
-						<h3 class="box-title">Crear una publicaciones</h3>
-					</div>
 					<div class="box-body">
 						<div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
 							<label>Titulo de la publicación</label>
@@ -32,13 +29,13 @@
 								placeholder="Ingresa aquí el título de la publicación">
 							{!! $errors->first('title', '<span class="help-block">:message</span>') !!}
 						</div>
-					</div>
-					<div class="box-body">
-						<div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}">
-							<label>Contenido de la publicación</label>
-							<textarea id="editor" rows="10" type="text" name="body" class="form-control" placeholder="Ingresa el contenido completo de la publicación">{{ old('body', $post->body) }}</textarea>
-							{!! $errors->first('body', '<span class="help-block">:message</span>') !!}
-						</div>
+            <div class="box-body">
+              <div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}">
+                <label>Contenido de la publicación</label>
+                <textarea id="editor" rows="10" type="text" name="body" class="form-control" placeholder="Ingresa el contenido completo de la publicación">{{ old('body', $post->body) }}</textarea>
+                {!! $errors->first('body', '<span class="help-block">:message</span>') !!}
+              </div>
+            </div>
 					</div>
 				</div>
 			</div>
@@ -103,7 +100,26 @@
 					</div>
 				</div>
 			</div>
-		</form>
+    </form>
+    <div class="col-md-8">
+      <div class="box box-primary">
+        <div class="box-body">
+          @foreach($post->photos as $photo)
+            <form method="POST" action="{{ route('admin.photos.destroy', $photo) }}">
+              @csrf
+              @method('DELETE')
+
+              <div class="col-md-2">
+                <button class="btn btn-danger btn-xs" style="position: absolute">
+                  <i class="fa fa-remove"></i>
+                </button>
+                <img class="img-responsive" src="{{ $photo->url }}">
+              </div>
+            </form>
+          @endforeach
+        </div>
+      </div>
+    </div>
 	</div>
 @endsection
 
@@ -133,6 +149,7 @@
 		$('.select2').select2();
 
 		CKEDITOR.replace('editor');
+    CKEDITOR.config.height = 315;
 
 		var myDropzone = new Dropzone('.dropzone', {
 			url: '/admin/posts/{{ $post->url }}/photos',
