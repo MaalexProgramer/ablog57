@@ -14,6 +14,28 @@
 
 @section('content')
 	<div class="row">
+    @if ($post->photos->count())
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <div class="box-body">
+            @foreach($post->photos as $photo)
+              <form method="POST" action="{{ route('admin.photos.destroy', $photo) }}">
+                @csrf
+                @method('DELETE')
+
+                <div class="col-md-2">
+                  <button class="btn btn-danger btn-xs" style="position: absolute">
+                    <i class="fa fa-remove"></i>
+                  </button>
+                  <img class="img-responsive" src="{{ $photo->url }}">
+                </div>
+              </form>
+            @endforeach
+          </div>
+        </div>
+      </div>
+    @endif
+
 		<form method="POST" action="{{ route('admin.posts.update', $post) }}">
 			@csrf
 			@method('PUT')
@@ -101,25 +123,6 @@
 				</div>
 			</div>
     </form>
-    <div class="col-md-8">
-      <div class="box box-primary">
-        <div class="box-body">
-          @foreach($post->photos as $photo)
-            <form method="POST" action="{{ route('admin.photos.destroy', $photo) }}">
-              @csrf
-              @method('DELETE')
-
-              <div class="col-md-2">
-                <button class="btn btn-danger btn-xs" style="position: absolute">
-                  <i class="fa fa-remove"></i>
-                </button>
-                <img class="img-responsive" src="{{ $photo->url }}">
-              </div>
-            </form>
-          @endforeach
-        </div>
-      </div>
-    </div>
 	</div>
 @endsection
 
