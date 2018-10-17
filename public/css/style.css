@@ -43,7 +43,7 @@ header nav li a:hover{
     top: 30px;
     text-transform: capitalize;
 }
-.post .category{
+.post .category a{
   color: inherit;
   font-size: inherit;
 }
@@ -68,6 +68,10 @@ header nav li a:hover{
 }
 .post .tag{
 	margin: 0 5px;
+}
+.post .tag a{
+	color: inherit;
+	font-size: inherit;
 }
 .post footer{
 	margin-top: 45px;

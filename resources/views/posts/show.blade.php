@@ -41,9 +41,9 @@
         <div class="divider"></div>
         <div id="disqus_thread"></div>
         @include('partials.disqus-script')
-      </div><!-- .comments -->
+			</div><!-- .comments -->
     </div>
-  
+
     {{ $posts->links() }}
   </article>
 @endsection
