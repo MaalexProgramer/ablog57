@@ -84,13 +84,13 @@
 									id="datepicker">
 							</div>
 						</div>
-						<div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
+						<div class="form-group {{ $errors->has('category_id') ? 'has-error' : '' }}">
 							<label>Categorías</label>
-							<select name="category" class="form-control select2">
+							<select name="category_id" class="form-control select2">
 								<option value="">Seleciona una categoría</option>
 								@foreach ($categories as $category)
 									<option value="{{ $category->id }}"
-											{{ old('category', $post->category_id) == $category->id ? 'selected' : '' }}
+											{{ old('category_id', $post->category_id) == $category->id ? 'selected' : '' }}
 										>{{ $category->name }}
 									</option>
 								@endforeach
