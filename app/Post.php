@@ -14,6 +14,20 @@ class Post extends Model
 
   protected $dates = ['published_at'];
 
+	protected static function boot()
+	{
+		parent::boot();
+
+		/**
+		 * Al eliminar un Post, eliminar todas las etiquetas asociadas y
+		 * eliminar todas las fotos
+		 */
+		static::deleting(function($post){
+				$post->tags()->detach();
+				$post->photos->each->delete();
+		});
+	}
+
   public function getRouteKeyName()
   {
     return 'url';

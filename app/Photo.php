@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Storage;
 class Photo extends Model
 {
 	protected $guarded = [];
-	
+
 	protected static function boot()
 	{
-			parent::boot();
+		parent::boot();
 
-			// Cada vez que se elimine una foto, eliminarla del directio public
-			static::deleting(function($photo){
-					Storage::disk('public')->delete($photo->url);
-			});
+		// Cada vez que se elimine una foto, eliminarla del directorio public
+		static::deleting(function($photo){
+				Storage::disk('public')->delete($photo->url);
+		});
 	}
 }

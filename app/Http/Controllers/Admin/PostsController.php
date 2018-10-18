@@ -78,6 +78,21 @@ class PostsController extends Controller
 
 		return redirect()
 				->route('admin.posts.edit', $post)
-				->with('success', 'Su publicación ha sido guardada');
+				->with('success', 'La publicación ha sido guardada');
+	}
+
+	public function destroy(Post $post)
+	{
+		// Quitar todas las etiquetas asociadas al Post - Pasa al Modelo Post
+/* 		$post->tags()->detach();
+		$post->photos->each->delete(); */
+
+		//$this->authorize('delete', $post);
+
+		$post->delete();
+
+		return redirect()
+				->route('admin.posts.index')
+				->with('danger', 'La publicaciÔøΩn ha sido eliminada');
 	}
 }
