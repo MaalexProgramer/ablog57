@@ -156,7 +156,9 @@
 			autoclose: true
 		});
 
-		$('.select2').select2();
+		$('.select2').select2({
+			tags: true
+		});
 
 		CKEDITOR.replace('editor');
     CKEDITOR.config.height = 315;

@@ -45,6 +45,8 @@ class PostsController extends Controller
 
 	public function update(Post $post, Request $request)
 	{
+		//return$request->all();
+
 		$this->validate($request, [
 			'title'    => 'required',
 			'body'     => 'required',
@@ -58,12 +60,31 @@ class PostsController extends Controller
 		$post->body = $request->get('body');
 		$post->iframe = $request->get('iframe');
 		$post->excerpt = $request->get('excerpt');
-		$post->published_at = $request->has('published_at') ? Carbon::parse($request->get('published_at')) : null;
-		$post->category_id = $request->get('category');
+		$post->published_at = $request->has('published_at')
+													 ? Carbon::parse($request->get('published_at'))
+													 : null;
+
+		//Crear Categorías y Etiquetas en el formulario de los Posts
+		$post->category_id = Category::find($cat = $request->get('category'))
+													? $cat
+													: Category::create(['name' => $cat])->id;
 		$post->save();
 
+		$tags = [];
+
+		//Etiquetas que se reciben
+		foreach ($request->get('tags') as $tag)
+		{
+			//Guardar los id's de las Etiquetas
+			$tags[] = Tag::find($tag)
+									? $tag
+									: Tag::create(['name' => $tag])->id;
+		}
+
 		//$post->tags()->attach($request->get('tags'));
-		$post->tags()->sync($request->get('tags'));
+		//$post->tags()->sync($request->get('tags'));
+		// Sincronizar las Etiquetas envias en el formulario
+		$post->tags()->sync($tags);
 
 		return redirect()
 				->route('admin.posts.edit', $post)
