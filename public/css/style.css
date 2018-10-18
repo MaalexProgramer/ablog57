@@ -203,18 +203,18 @@ a.btn-bar{
 
 .page-contact .input-container input{
 	font-family: "Lato", sans-serif;
-    background: #f7f9fc;
-    border: 0;
-    width: 100%;
-    height: 35px;
-    max-width: 310px;
-    padding: 7px 0 5px 15px;
-    display: block;
-    margin: 10px 0;
+	background: #f7f9fc;
+	border: 0;
+	width: 100%;
+	height: 35px;
+	max-width: 310px;
+	padding: 7px 0 5px 15px;
+	display: block;
+	margin: 10px 0;
 }
 .page-contact .input-container .input-subject{
-    margin: 20px 0;
-    max-width: 98%;
+	margin: 20px 0;
+	max-width: 98%;
 }
 .page-contact .input-container textarea{
 	width: 98%;
@@ -226,9 +226,9 @@ a.btn-bar{
 .page-contact .form-contact .send-message a{
 	display: block;
 	text-decoration: none;
-    font-weight: bold;
-    margin-top: 25px;
-    font-size: 19px;
+	font-weight: bold;
+	margin-top: 25px;
+	font-size: 19px;
 }
 
 .custom-wrapper {
