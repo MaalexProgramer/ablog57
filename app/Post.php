@@ -33,10 +33,50 @@ class Post extends Model
     return 'url';
 	}
 
-	public function setTitleAttribute($title)
+	public function category()  // $post->category->name
 	{
-		$this->attributes['title'] = $title;
-		$this->attributes['url'] = str_slug($title);
+		return $this->belongsTo(Category::class);
+	}
+
+	public function tags()
+	{
+		return $this->belongsToMany(Tag::class);
+	}
+
+	// Un Post podrÔøΩ tener varias fotos
+	public function photos()
+	{
+		return $this->hasMany(Photo::class);
+	}
+
+	public function scopePublished($query)
+	{
+		$query->whereNotNull('published_at')
+					->where('published_at', '<=', Carbon::now())
+					->latest('published_at');
+	}
+
+	public static function create(array $attributes = [])
+	{
+			$post = static::query()->create($attributes);
+
+			$post->generateUrl();
+
+			return $post;
+	}
+
+	public function generateUrl()
+	{
+			$url = str_slug($this->title);
+
+			if ($this->whereUrl($url)->exists())
+			{
+					$url = "{$url}-{$this->id}";
+			}
+
+			$this->url = $url;
+
+			$this->save();
 	}
 
 	public function setPublishedAtAttribute($published_at)
@@ -59,27 +99,4 @@ class Post extends Model
 
 			return $this->tags()->sync($tagIds);
 	}
-
-  public function category()  // $post->category->name
-  {
-    return $this->belongsTo(Category::class);
-	}
-
-	public function tags()
-	{
-		return $this->belongsToMany(Tag::class);
-	}
-
-	// Un Post podrá tener varias fotos
-	public function photos()
-	{
-		return $this->hasMany(Photo::class);
-	}
-
-  public function scopePublished($query)
-  {
-    $query->whereNotNull('published_at')
-          ->where('published_at', '<=', Carbon::now())
-          ->latest('published_at');
-  }
 }

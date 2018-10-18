@@ -31,7 +31,7 @@ class PostsController extends Controller
 	{
 		$this->validate($request, ['title' => 'required|min:3']);
 
-		$post = Post::create($request->only('title'));
+		$post = Post::create($request->only('title'));			// Modelo create()
 
 		return redirect()->route('admin.posts.edit', $post);
 	}
