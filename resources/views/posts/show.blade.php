@@ -6,7 +6,7 @@
 @section('content')
   <article class="post container">
 		@if ($post->photos->count() === 1)
-      <figure><img src="{{ $post->photos->first()->url }}" class="img-reponsive" alt="" srcset=""></figure>
+      <figure><img src="{{ url($post->photos->first()->url) }}" class="img-reponsive" alt="" srcset=""></figure>
     @elseif($post->photos->count() > 1)
       @include('posts.carousel')
     @elseif($post->iframe)
@@ -43,8 +43,6 @@
         @include('partials.disqus-script')
 			</div><!-- .comments -->
     </div>
-
-    {{ $posts->links() }}
   </article>
 @endsection
 
