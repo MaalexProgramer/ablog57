@@ -99,4 +99,9 @@ class Post extends Model
 
 			return $this->tags()->sync($tagIds);
 	}
+
+	public function isPublished()
+	{
+		return ! is_null($this->published_at) && $this->published_at < today();
+	}
 }
