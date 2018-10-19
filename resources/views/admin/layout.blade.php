@@ -186,38 +186,18 @@
                     <img src="/adminlte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                     <p>
-                      {{ auth()->user()->name }} - Web Developer
-                      <small>Member since Nov. 2012</small>
+                      {{ auth()->user()->name }}
+                      <small>Desde {{ auth()->user()->created_at->format('d/M/Y') }}</small>
                     </p>
-                  </li>
-                  <!-- Menu Body -->
-                  <li class="user-body">
-                    <div class="row">
-                      <div class="col-xs-4 text-center">
-                        <a href="#">Followers</a>
-                      </div>
-                      <div class="col-xs-4 text-center">
-                        <a href="#">Sales</a>
-                      </div>
-                      <div class="col-xs-4 text-center">
-                        <a href="#">Friends</a>
-                      </div>
-                    </div>
-                    <!-- /.row -->
                   </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
-                    <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">{{ __('Profile') }}</a>
-                    </div>
-                    <div class="pull-right">
-                      <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button class="btn btn-default btn-flat fa fa-sign-out">
-                          {{ __('Sign out') }}
-                        </button>
-                      </form>
-                    </div>
+										<form method="POST" action="{{ route('logout') }}">
+											@csrf
+											<button class="btn btn-default btn-flat fa fa-sign-out btn-block">
+												{{ __('Sign out') }}
+											</button>
+										</form>
                   </li>
                 </ul>
               </li>

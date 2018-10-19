@@ -63,25 +63,27 @@ class Post extends Model
 
 	public static function create(array $attributes = [])
 	{
-			$post = static::query()->create($attributes);
+		$attributes['user_id'] = auth()->id();
 
-			$post->generateUrl();
+		$post = static::query()->create($attributes);
 
-			return $post;
+		$post->generateUrl();
+
+		return $post;
 	}
 
 	public function generateUrl()
 	{
-			$url = str_slug($this->title);
+		$url = str_slug($this->title);
 
-			if ($this->whereUrl($url)->exists())
-			{
-					$url = "{$url}-{$this->id}";
-			}
+		if ($this->whereUrl($url)->exists())
+		{
+				$url = "{$url}-{$this->id}";
+		}
 
-			$this->url = $url;
+		$this->url = $url;
 
-			$this->save();
+		$this->save();
 	}
 
 	public function setPublishedAtAttribute($published_at)

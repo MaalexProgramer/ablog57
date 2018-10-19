@@ -9,12 +9,20 @@ class DatabaseSeeder extends Seeder
   {
     User::create(
       [
-          'name' => 'Agatha',
-          'email' => 'agatha@tmp.com',
+          'name' => 'Superadmin',
+          'email' => 'superadmin@admin.com',
           'password' => bcrypt('123123')
       ]
-    );
-  
+		);
+
+		User::create(
+			[
+					'name' => 'Agatha',
+					'email' => 'agatha@tmp.com',
+					'password' => bcrypt('123123')
+			]
+		);
+
     $this->call(PostsTableSeeder::class);
   }
 }

@@ -85,7 +85,7 @@ class PostsTableSeeder extends Seeder
 		$post->body = "Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules.";
 		$post->published_at = Carbon::now()->subDays(1);
 		$post->category_id = 2;
-		$post->user_id = 1;
+		$post->user_id = 2;
 		$post->save();
 
 		$post = new Post;
@@ -95,7 +95,7 @@ class PostsTableSeeder extends Seeder
 		$post->body = "Un riachuelo llamado Pons fluye por su pueblo y los abastece con las normas necesarias. Hablamos de un país paraisomático en el que a uno le caen pedazos de frases asadas en la boca.";
 		$post->published_at = Carbon::now();
 		$post->category_id = 1;
-		$post->user_id = 1;
+		$post->user_id = 2;
 		$post->save();
 
 		// Llenar la tabla post_tag
