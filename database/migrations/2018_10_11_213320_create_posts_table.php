@@ -17,6 +17,9 @@ class CreatePostsTable extends Migration
 					$table->increments('id');
 					$table->string('title');
 					$table->string('url')->nullable();
+
+					$table->unsignedInteger('user_id');
+					
 					$table->text('excerpt')->nullable();
 					$table->mediumText('iframe')->nullable();
 					$table->mediumText('body')->nullable();
