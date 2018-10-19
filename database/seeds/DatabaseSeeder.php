@@ -7,7 +7,7 @@ class DatabaseSeeder extends Seeder
 {
   public function run()
   {
-    User::create(
+/*     User::create(
       [
           'name' => 'Superadmin',
           'email' => 'superadmin@admin.com',
@@ -21,8 +21,14 @@ class DatabaseSeeder extends Seeder
 					'email' => 'agatha@tmp.com',
 					'password' => bcrypt('123123')
 			]
-		);
+		); */
+		// Deshabilitar la revisión de las llaves foráneas
+		DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-    $this->call(PostsTableSeeder::class);
+		$this->call(UsersTableSeeder::class);
+		$this->call(PostsTableSeeder::class);
+
+		// Habilitar la revisiÔøΩn de las llaves forÔøΩneas
+		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
   }
 }

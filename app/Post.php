@@ -61,6 +61,16 @@ class Post extends Model
 					->latest('published_at');
 	}
 
+	public function scopeAllowed($query)
+	{
+		if( auth()->user()->hasRole('Admin') )
+		{
+			return $query;
+		}
+
+		return $query->where('user_id', auth()->id());
+	}
+
 	public static function create(array $attributes = [])
 	{
 		$attributes['user_id'] = auth()->id();
