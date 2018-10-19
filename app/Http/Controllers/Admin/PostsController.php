@@ -18,7 +18,7 @@ class PostsController extends Controller
 		//$posts = Post::where('user_id', auth()->id())->get();
 		//$posts = auth()->user()->posts;
 
-		$posts = Post::allowed()->get();
+		$posts = Post::allowed()->get();					// Modelo
 
     return view('admin.posts.index', compact('posts'));
 	}
@@ -49,7 +49,7 @@ class PostsController extends Controller
 
 	public function edit(Post $post)
 	{
-		$this->authorize('view', $post);
+		$this->authorize('update', $post);
 
 /* 		$categories = Category::all();
 		$tags = Tag::all(); */
