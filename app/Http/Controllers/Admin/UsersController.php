@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUserRequest;
 use Spatie\Permission\Models\Permission;
 
 class UsersController extends Controller
@@ -33,19 +33,30 @@ class UsersController extends Controller
   
   public function edit(User $user)
   {
-    return view('admin.users.edit', compact('user'));
+    $roles = Role::pluck('name', 'id');
+
+    return view('admin.users.edit', compact('user', 'roles'));
   }
   
-  public function update(Request $request, User $user)
+  public function update(UpdateUserRequest $request, User $user)
   {
-    $data = $request->validate([
+/*     $data = $request->validate([
       'name'  => 'required',
       'email' => ['required', Rule::unique('users')->ignore($user->id)]
-    ]);
+    ]); */
+/*     $rules = [
+      'name'  => 'required',
+      'email' => ['required', Rule::unique('users')->ignore($user->id)]
+    ];
 
-    $user->update($data);
+    if($request->filled('password'))
+    {
+      $rules['password'] = ['confirmed', 'min:6'];
+    } */
 
-    return redirect()->route('admin.users.edit', $user)->with('success', 'Usuario actualizado');
+    $user->update( $request->validated() );
+
+    return back()->with('success', 'Usuario actualizado');
   }
   
   public function destroy(User $user)

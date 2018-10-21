@@ -33,7 +33,7 @@ class UsersTableSeeder extends Seeder
 		$admin = new User;
 		$admin->name	= 'Superadmin';
 		$admin->email	= 'superadmin@admin.com';
-		$admin->password = bcrypt('123123');
+		$admin->password = '123123';
 		$admin->save();
 
 		$admin->assignRole($adminRole);
@@ -41,7 +41,7 @@ class UsersTableSeeder extends Seeder
 		$writer = new User;
 		$writer->name	 = 'Agatha';
 		$writer->email = 'agatha@tmp.com';
-		$writer->password = bcrypt('123123');
+		$writer->password = '123123';
 		$writer->save();
 
 		$writer->assignRole($writerRole);
