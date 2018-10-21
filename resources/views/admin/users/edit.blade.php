@@ -9,17 +9,14 @@
         </div>
         <div class="box-body">
           <form method="POST" action="{{ route('admin.users.update', $user) }}">
-            @csrf
-            @method('PUT')
-
-            @if ($errors->any())
-              <ul class="list-group">
-                @foreach ($errors->all() as $error)
-                  <li class="list-group-item list-group-item-danger">
-                    {{ $error }}
-                  </li>
-                @endforeach
-              </ul>
+            @csrf @method('PUT') @if ($errors->any())
+            <ul class="list-group">
+              @foreach ($errors->all() as $error)
+              <li class="list-group-item list-group-item-danger">
+                {{ $error }}
+              </li>
+              @endforeach
+            </ul>
             @endif
 
             <div class="form-group">
@@ -42,7 +39,7 @@
               <label for="password_confirmation">Repetir contraseña:</label>
               <input type="password" name="password_confirmation" class="form-control" placeholder="Repite la contraseña">
             </div>
-            
+
             <button class="btn btn-primary btn-block">Actualizar usuario</button>
           </form>
         </div>
@@ -55,7 +52,7 @@
         </div>
         <div class="box-body">
           <form method="POST" action="{{ route('admin.users.roles.update', $user) }}">
-            {{ csrf_field() }} {{ method_field('PUT') }}
+            @csrf @method('PUT') 
             @foreach ($roles as $id => $name)
               <div class="checkbox">
                 <label>
@@ -66,6 +63,26 @@
               </div>
             @endforeach
             <button class="btn btn-primary btn-block">Actualizar roles</button>
+          </form>
+        </div>
+      </div>
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Permisos</h3>
+        </div>
+        <div class="box-body">
+          <form method="POST" action="{{ route('admin.users.permissions.update', $user) }}">
+            {{ csrf_field() }} {{ method_field('PUT') }}
+            @foreach ($permissions as $id => $name)
+            <div class="checkbox">
+              <label>
+                <input name="permissions[]" type="checkbox" value="{{ $name }}"
+                    {{ $user->permissions->contains($id) ? 'checked':'' }}>
+                {{ $name }}
+              </label>
+            </div>
+            @endforeach
+            <button class="btn btn-primary btn-block">Actualizar permisos</button>
           </form>
         </div>
       </div>

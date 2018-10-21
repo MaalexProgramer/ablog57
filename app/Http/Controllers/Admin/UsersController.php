@@ -34,8 +34,9 @@ class UsersController extends Controller
   public function edit(User $user)
   {
     $roles = Role::pluck('name', 'id');
-
-    return view('admin.users.edit', compact('user', 'roles'));
+    $permissions = Permission::pluck('name', 'id');
+    
+    return view('admin.users.edit', compact('user', 'roles', 'permissions'));
   }
   
   public function update(UpdateUserRequest $request, User $user)

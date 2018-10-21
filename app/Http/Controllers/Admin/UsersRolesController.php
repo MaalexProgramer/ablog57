@@ -10,8 +10,13 @@ class UsersRolesController extends Controller
 {
   public function update(Request $request, User $user)
   {
-    $user->syncRoles($request->roles);
+    $user->roles()->detach();
 
-    return back()->withFlash('Los roles han sido actualizados');
+    if ($request->filled('roles'))
+    {
+      $user->assignRole($request->roles);
+    }
+
+    return back()->with('success', 'Los roles han sido actualizados');
   }
 }
