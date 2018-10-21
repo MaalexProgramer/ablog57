@@ -20,11 +20,24 @@ class UsersController extends Controller
   
   public function create()
   {
-    return view('admin.users.create');
+    $user = new User;
+    $roles = Role::with('permissions')->get();
+    $permissions = Permission::pluck('name', 'id');
+
+    return view('admin.users.create', compact('user', 'roles', 'permissions'));
+
   }
   
   public function store(Request $request)
   {
+    // Validar el formulario
+    // Generar una contraseña
+    // Creamos el usuario
+    // Asignamos los roles
+    // Asignamos los permisos
+    // Enviamos el email
+    // Regresamos al usuario
+
   }
   
   public function show(User $user)
