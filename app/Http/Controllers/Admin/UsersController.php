@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Events\UserWasCreated;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
@@ -54,6 +55,7 @@ class UsersController extends Controller
     }
 
     // Enviamos el email
+    UserWasCreated::dispatch($user, $data['password']);
 
     // Regresamos al usuario
     return redirect()->route('admin.users.index')->with('success', 'El usuario ha sido creado');
