@@ -12,7 +12,8 @@ Route::get('tags/{tag}', 'TagsController@show')->name('tags.show');
 Route::group([
   'prefix'      => 'admin',
   'namespace'   => 'Admin',
-  'middleware'  => 'auth'], function () {
+  'middleware'  => 'auth'
+  ], function () {
 		Route::get('/', 'AdminController@index')->name('dashboard');
 
 		Route::resource('posts', 'PostsController', ['except' => 'show', 'as' => 'admin']);
