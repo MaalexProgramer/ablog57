@@ -8,15 +8,8 @@
           <h3 class="box-title">Datos personales</h3>
         </div>
         <div class="box-body">
-          @if ($errors->any())
-          <ul class="list-group">
-            @foreach ($errors->all() as $error)
-            <li class="list-group-item list-group-item-danger">
-              {{ $error }}
-            </li>
-            @endforeach
-          </ul>
-          @endif
+					@include('partials.error-messages')
+
           <form method="POST" action="{{ route('admin.users.store') }}">
             @csrf
 
@@ -36,7 +29,7 @@
             </div>
             <div class="form-group col-md-6">
               <label>Permisos</label>
-              @include('admin.permissions.checkboxes')
+              @include('admin.permissions.checkboxes', ['model' => $user])
             </div>
             <span class="help-block">La contraseña será generada y enviada al nuevo usuario vía email</span>
             <button class="btn btn-primary btn-block">Crear usuario</button>

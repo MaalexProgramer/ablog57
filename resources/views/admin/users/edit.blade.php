@@ -9,15 +9,9 @@
         </div>
         <div class="box-body">
           <form method="POST" action="{{ route('admin.users.update', $user) }}">
-            @csrf @method('PUT') @if ($errors->any())
-            <ul class="list-group">
-              @foreach ($errors->all() as $error)
-              <li class="list-group-item list-group-item-danger">
-                {{ $error }}
-              </li>
-              @endforeach
-            </ul>
-            @endif
+						@csrf @method('PUT')
+
+						@include('partials.error-messages')
 
             <div class="form-group">
               <label for="name">Nombre:</label>

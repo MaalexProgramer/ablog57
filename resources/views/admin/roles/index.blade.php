@@ -16,7 +16,7 @@
     <div class="box-header">
       <h3 class="box-title">Listado de Roles</h3>
       <a href="{{ route('admin.roles.create') }}" class="btn btn-primary pull-right">
-          <i class="fa fa-plus"></i>  Crear role
+          <i class="fa fa-plus"></i>  Crear Rol
       </a>
     </div>
 
