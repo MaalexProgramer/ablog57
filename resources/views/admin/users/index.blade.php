@@ -19,7 +19,7 @@
           <i class="fa fa-plus"></i>  Crear usuario
       </a>
     </div>
-    
+
     <div class="box-body">
       <table id="users-table" class="table table-bordered table-striped">
         <thead>
@@ -62,12 +62,12 @@
 @endsection
 
 @push('styles')
-  <link rel="stylesheet" href="/adminlte/plugins/datatables/dataTables.bootstrap.css"> 
+  <link rel="stylesheet" href="/adminlte/plugins/datatables/dataTables.bootstrap4.min.css">
 @endpush
 
 @push('scripts')
   <script src="/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
-  <script src="/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
+  <script src="/adminlte/plugins/datatables/dataTables.bootstrap4.min.js"></script>
   <script>
     $(function () {
       $("#users-table").DataTable();

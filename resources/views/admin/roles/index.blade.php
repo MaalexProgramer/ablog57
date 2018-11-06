@@ -25,8 +25,9 @@
         <thead>
           <tr>
             <th>ID</th>
+            <th>Identificador</th>
             <th>Nombre</th>
-            <th>Guard</th>
+            <th>Permisos</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -35,7 +36,8 @@
             <tr>
               <td>{{ $role->id }}</td>
               <td>{{ $role->name }}</td>
-              <td>{{ $role->guard_name }}</td>
+              <td>{{ $role->display_name }}</td>
+              <td>{{ $role->permissions->pluck('display_name')->implode(', ') }}</td>
               <td>
                 <a href="{{ route('admin.roles.show', $role) }}" class="btn btn-xs btn-default">
                   <i class="fa fa-eye"></i>
@@ -60,12 +62,12 @@
 @endsection
 
 @push('styles')
-  <link rel="stylesheet" href="/adminlte/plugins/datatables/dataTables.bootstrap.css">
+  <link rel="stylesheet" href="/adminlte/plugins/datatables/dataTables.bootstrap4.min.css">
 @endpush
 
 @push('scripts')
   <script src="/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
-  <script src="/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
+  <script src="/adminlte/plugins/datatables/dataTables.bootstrap4.min.js"></script>
   <script>
     $(function () {
       $("#roles-table").DataTable();
