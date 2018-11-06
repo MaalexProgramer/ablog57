@@ -27,7 +27,7 @@ class RolesController extends Controller
 	public function store(Request $request)
 	{
 		$data = $request->validate([
-			'name' => 'required',
+			'name' => 'required|unique:roles',
 			'guard_name' => 'required'
 		]);
 
@@ -46,28 +46,31 @@ class RolesController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+	public function edit(Role $role)
+	{
+		return view('admin.roles.edit', [
+			'role' => $role,
+			'permissions' => Permission::pluck('name', 'id')
+		]);
+	}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+	public function update(Request $request, Role $role)
+	{
+		$data = $request->validate([
+			'name' => 'required|unique:roles,name,' . $role->id,	//unico y que ignore el id que se esta editando
+			'guard_name' => 'required'
+		]);
+
+		$role->update($data);
+
+		$role->permissions()->detach();		//Quitar los permisos
+
+		if ($request->has('permissions')) {
+			$role->givePermissionTo($request->permissions);
+		}
+
+		return redirect()->route('admin.roles.edit', $role)->withFlash('El role fue actualizado correctamente');
+	}
 
     /**
      * Remove the specified resource from storage.
