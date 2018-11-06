@@ -22,7 +22,7 @@ class UsersController extends Controller
   public function create()
   {
 		$user = new User;
-		
+
 		$this->authorize('create', $user);
 
     $roles = Role::with('permissions')->get();
@@ -103,10 +103,15 @@ class UsersController extends Controller
 
     $user->update( $request->validated() );
 
-    return back()->with('success', 'Usuario actualizado');
+		return redirect()->route('admin.users.edit', $user)->withFlash('Usuario actualizado');
   }
 
   public function destroy(User $user)
   {
+		$this->authorize('delete', $user);
+
+		$user->delete();
+
+		return redirect()->route('admin.users.index')->withFlash('Usuario eliminado');
   }
 }
