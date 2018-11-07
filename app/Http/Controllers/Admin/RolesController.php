@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Spatie\Permission\Models\Role;
+use App\Http\Requests\SaveRolesRequest;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -24,14 +25,19 @@ class RolesController extends Controller
 		]);
 	}
 
-	public function store(Request $request)
+	public function store(SaveRolesRequest $request)
 	{
-		$data = $request->validate([
+/* 		$data = $request->validate([
 			'name' => 'required|unique:roles',
 			'display_name' => 'required'
-		]);
+		],[
+				'name.required' => 'El campo identificador es obligatorio.',
+				'name.unique' 	=> 'Este identificador ya ha sido registrado.',
+				'display_name.required' => 'El campo nombre es obligatorio.'
+			]
+		); */
 
-		$role = Role::create($data);
+		$role = Role::create($request->validated());
 
 		if ($request->has('permissions'))
 		{
@@ -54,14 +60,17 @@ class RolesController extends Controller
 		]);
 	}
 
-	public function update(Request $request, Role $role)
+	public function update(SaveRolesRequest $request, Role $role)
 	{
-		$data = $request->validate([
-			//'name' => 'required|unique:roles,name,' . $role->id,	//unico y que ignore el id que se esta editando
-			'display_name' => 'required'
-		]);
+		//'name' => 'required|unique:roles,name,' . $role->id,	//unico y que ignore el id que se esta
 
-		$role->update($data);
+/* 		$data = $request->validate(['display_name' => 'required'],
+			[
+				'display_name.required' => 'El campo nombre es obligatorio.'
+			]
+		); */
+
+		$role->update($request->validated());
 
 		$role->permissions()->detach();		//Quitar los permisos
 
