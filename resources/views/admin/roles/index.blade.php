@@ -14,10 +14,12 @@
 @section('content')
   <div class="box box-primary">
     <div class="box-header">
-      <h3 class="box-title">Listado de Roles</h3>
-      <a href="{{ route('admin.roles.create') }}" class="btn btn-primary pull-right">
+			<h3 class="box-title">Listado de Roles</h3>
+			@can('create', $roles->first())
+      	<a href="{{ route('admin.roles.create') }}" class="btn btn-primary pull-right">
           <i class="fa fa-plus"></i>  Crear Rol
-      </a>
+				</a>
+			@endcan
     </div>
 
     <div class="box-body">
@@ -39,18 +41,23 @@
               <td>{{ $role->display_name }}</td>
               <td>{{ $role->permissions->pluck('display_name')->implode(', ') }}</td>
               <td>
-                <a href="{{ route('admin.roles.edit', $role) }}" class="btn btn-xs btn-info">
-                  <i class="fa fa-pencil"></i>
-								</a>
-								@if ($role->id !== 1)
-									<form method="POST" action="{{ route('admin.roles.destroy', $role) }}" style="display: inline">
-										@csrf @method('DELETE')
+								@can('update', $role)
+									<a href="{{ route('admin.roles.edit', $role) }}" class="btn btn-xs btn-info">
+										<i class="fa fa-pencil"></i>
+									</a>
+								@endcan
 
-										<button class="btn btn-xs btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar esta usuario?')">
-											<i class="fa fa-times"></i>
-										</button>
-									</form>
-								@endif
+								@can('delete', $role)
+									@if ($role->id !== 1)
+										<form method="POST" action="{{ route('admin.roles.destroy', $role) }}" style="display: inline">
+											@csrf @method('DELETE')
+
+											<button class="btn btn-xs btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar esta usuario?')">
+												<i class="fa fa-times"></i>
+											</button>
+										</form>
+									@endif
+								@endcan
               </td>
             </tr>
           @endforeach
