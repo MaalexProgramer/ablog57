@@ -44,14 +44,13 @@
 								</a>
 								@if ($role->id !== 1)
 									<form method="POST" action="{{ route('admin.roles.destroy', $role) }}" style="display: inline">
-										@csrf
-										@method('DELETE')
+										@csrf @method('DELETE')
+
 										<button class="btn btn-xs btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar esta usuario?')">
 											<i class="fa fa-times"></i>
 										</button>
 									</form>
 								@endif
-
               </td>
             </tr>
           @endforeach
