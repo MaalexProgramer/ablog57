@@ -39,19 +39,19 @@
               <td>{{ $role->display_name }}</td>
               <td>{{ $role->permissions->pluck('display_name')->implode(', ') }}</td>
               <td>
-                <a href="{{ route('admin.roles.show', $role) }}" class="btn btn-xs btn-default">
-                  <i class="fa fa-eye"></i>
-                </a>
                 <a href="{{ route('admin.roles.edit', $role) }}" class="btn btn-xs btn-info">
                   <i class="fa fa-pencil"></i>
-                </a>
-                <form method="POST" action="{{ route('admin.roles.destroy', $role) }}" style="display: inline">
-                  @csrf
-                  @method('DELETE')
-                  <button class="btn btn-xs btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar esta usuario?')">
-                    <i class="fa fa-times"></i>
-                  </button>
-                </form>
+								</a>
+								@if ($role->id !== 1)
+									<form method="POST" action="{{ route('admin.roles.destroy', $role) }}" style="display: inline">
+										@csrf
+										@method('DELETE')
+										<button class="btn btn-xs btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar esta usuario?')">
+											<i class="fa fa-times"></i>
+										</button>
+									</form>
+								@endif
+
               </td>
             </tr>
           @endforeach
