@@ -41,6 +41,22 @@ class PostsTableSeeder extends Seeder
 		$category->name = "Django";
 		$category->save();
 
+		$category = new Category;
+		$category->name = "Explore";
+		$category->save();
+
+		$category = new Category;
+		$category->name = "Watch";
+		$category->save();
+
+		$category = new Category;
+		$category->name = "Live";
+		$category->save();
+
+		$category = new Category;
+		$category->name = "Give";
+		$category->save();
+
     $tag = new Tag;
     $tag->name = "Etiqueta 1";
     $tag->save();
@@ -92,7 +108,7 @@ class PostsTableSeeder extends Seeder
 		$post->excerpt = "Li Europan";
 		$post->body = "Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules.";
 		$post->published_at = Carbon::now()->subDays(1);
-		$post->category_id = 2;
+		$post->category_id = 3;
 		$post->user_id = 2;
 		$post->save();
 
@@ -102,12 +118,53 @@ class PostsTableSeeder extends Seeder
 		$post->excerpt = "Muy lejos";
 		$post->body = "Un riachuelo llamado Pons fluye por su pueblo y los abastece con las normas necesarias. Hablamos de un país paraisomático en el que a uno le caen pedazos de frases asadas en la boca.";
 		$post->published_at = Carbon::now();
+		$post->category_id = 4;
+		$post->user_id = 2;
+		$post->save();
+
+		$post = new Post;
+		$post->title = "No difference how many peaks you reach if there was no pleasure in the climb.";
+		$post->url = str_slug($post->title);
+		$post->excerpt = "Quisque congue lacus mattis massa luctus, nec hendrerit purus aliquet. Ut ac elementum urna. Pellentesque suscipit metus et egestas congue. Duis eu pellentesque turpis, ut maximus metus. Sed ultrices tellus vitae rutrum congue. Fusce luctus augue id nisl suscipit, vel sollicitudin orci egestas. Morbi posuere venenatis ipsum, ac vestibulum quam dignissim efficitur. Ut vitae rutrum augue, in volutpat quam. Cras a viverra ipsum. Aenean ut consequat ex, vitae vulputate nunc. Vestibulum metus nisi, aliquam sed tincidunt sit amet, pretium et augue.";
+		$post->body = "<p>Quisque congue lacus mattis massa luctus, nec hendrerit purus aliquet. Ut ac elementum urna. Pellentesque suscipit metus et egestas congue. Duis eu pellentesque turpis, ut maximus metus. Sed ultrices tellus vitae rutrum congue. Fusce luctus augue id nisl suscipit, vel sollicitudin orci egestas.</p> <p> Morbi posuere venenatis ipsum, ac vestibulum quam dignissim efficitur. Ut vitae rutrum augue, in volutpat quam. Cras a viverra ipsum. Aenean ut consequat ex, vitae vulputate nunc. Vestibulum metus nisi, aliquam sed tincidunt sit amet, pretium et augue.</p>";
+		$post->published_at = Carbon::now()->subDays(4);
+		$post->category_id = 5;
+		$post->user_id = 1;
+		$post->save();
+
+		$post = new Post;
+		$post->title = "You know, I'd rather argue with you, then laugh with anyone else.";
+		$post->url = str_slug($post->title);
+		$post->excerpt = "Quisque congue lacus mattis massa luctus, nec hendrerit purus aliquet. Ut ac elementum urna. Pellentesque suscipit metus et egestas congue. Duis eu pellentesque turpis, ut maximus metus. Sed ultrices tellus vitae rutrum congue. Fusce luctus augue id nisl suscipit, vel sollicitudin orci egestas. Morbi posuere venenatis ipsum, ac vestibulum quam dignissim efficitur. Ut vitae rutrum augue, in volutpat quam. Cras a viverra ipsum. Aenean ut consequat ex, vitae vulputate nunc. Vestibulum metus nisi, aliquam sed tincidunt sit amet, pretium et augue.";
+		$post->body = "<p>Quisque congue lacus mattis massa luctus, nec hendrerit purus aliquet. Ut ac elementum urna. Pellentesque suscipit metus et egestas congue. Duis eu pellentesque turpis, ut maximus metus. Sed ultrices tellus vitae rutrum congue.</p><p> Fusce luctus augue id nisl suscipit, vel sollicitudin orci egestas.</p><p> Morbi posuere venenatis ipsum, ac vestibulum quam dignissim efficitur. Ut vitae rutrum augue, in volutpat quam. Cras a viverra ipsum. Aenean ut consequat ex, vitae vulputate nunc. Vestibulum metus nisi, aliquam sed tincidunt sit amet, pretium et augue.</p>";
+		$post->published_at = '2017-1-08'; //Carbon::now()->subDays(3);
+		$post->category_id = 6;
+		$post->user_id = 1;
+		$post->save();
+
+
+		$post = new Post;
+		$post->title = "Everything in the universe has a rhythm, everything dances.";
+		$post->url = str_slug($post->title);
+		$post->excerpt = "Donec hendrerit magna vitae metus viverra tincidunt. Cras dolor lacus, placerat sed nulla in, egestas pharetra neque. Sed sit amet aliquet erat. Integer nec mi convallis, condimentum odio quis, pharetra tellus. Donec mollis libero in volutpat luctus. Cras laoreet pulvinar dapibus. Nulla laoreet odio at nunc semper vestibulum. Sed magna mauris, molestie eu ipsum et, pharetra egestas neque.";
+		$post->body = "<p>Donec hendrerit magna vitae metus viverra tincidunt. Cras dolor lacus, placerat sed nulla in, egestas pharetra neque.</p><p> Sed sit amet aliquet erat. Integer nec mi convallis, condimentum odio quis, pharetra tellus. Donec mollis libero in volutpat luctus. Cras laoreet pulvinar dapibus. </p><p>Nulla laoreet odio at nunc semper vestibulum. Sed magna mauris, molestie eu ipsum et, pharetra egestas neque.</p>";
+		$post->published_at = '2017-1-08'; //Carbon::now()->subDays(2);
 		$post->category_id = 1;
 		$post->user_id = 2;
 		$post->save();
 
+		$post = new Post;
+		$post->title = "As human beings, we have a natural compulsion to fill empty spaces.";
+		$post->url = str_slug($post->title);
+		$post->excerpt = "Sed sit amet aliquet erat. Integer nec mi convallis, condimentum odio quis, pharetra tellus. Donec mollis libero in volutpat luctus. Cras laoreet pulvinar dapibus. </p><p>Nulla laoreet odio at nunc semper vestibulum. Sed magna mauris, molestie eu ipsum et, pharetra egestas neque.";
+		$post->body = "<p>Sed sit amet aliquet erat. Integer nec mi convallis, condimentum odio quis, pharetra tellus. Donec mollis libero in volutpat luctus. </p><p> Cras laoreet pulvinar dapibus. </p><p>Nulla laoreet odio at nunc semper vestibulum. </p><p>Sed magna mauris, molestie eu ipsum et, pharetra egestas neque.</p><p>Sed sit amet aliquet erat. Integer nec mi convallis, condimentum odio quis, pharetra tellus. Donec mollis libero in volutpat luctus. </p><p> Cras laoreet pulvinar dapibus. </p><p>Nulla laoreet odio at nunc semper vestibulum. </p><p>Sed magna mauris, molestie eu ipsum et, pharetra egestas neque.</p>";
+		$post->published_at = '2017-1-08'; //Carbon::now()->subDays(1);
+		$post->category_id = 2;
+		$post->user_id = 2;
+		$post->save();
+
 		// Llenar la tabla post_tag
-		for ($i=1; $i <=4 ; $i++) {
+		for ($i=1; $i <=8 ; $i++) {
 			$post = Post::find($i);
 
 			for ($j=1; $j <=2 ; $j++) {

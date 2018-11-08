@@ -11,7 +11,8 @@ class PagesController extends Controller
 {
   public function home()
   {
-		$query = Post::published();    	//Query scopes --> Modelo
+		//$query = Post::with(['category', 'tags', 'owner', 'photos'])->published();    	//Query scopes --> Modelo
+		$query = Post::published();    	//scopePublished($query) con with --> Modelo
 
 		if (request('month')) {
 			$query->whereMonth('published_at', request('month'));

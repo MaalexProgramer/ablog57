@@ -4,6 +4,10 @@
   return new App\Mail\LoginCredentials(App\User::first(), 'asd123');
 }); */
 
+/* DB::listen(function($query){
+	var_dump($query->sql);
+}); */
+
 Route::get('/', 'PagesController@home')->name('pages.home');
 Route::get('nosotros', 'PagesController@about')->name('pages.about');
 Route::get('archivo', 'PagesController@archive')->name('pages.archive');

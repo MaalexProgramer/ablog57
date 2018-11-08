@@ -12,7 +12,7 @@ class Post extends Model
 		'title', 'body', 'iframe', 'excerpt', 'published_at', 'category_id', 'user_id'
 	];
 
-  protected $dates = ['published_at'];
+	protected $dates = ['published_at'];
 
 	protected static function boot()
 	{
@@ -56,7 +56,8 @@ class Post extends Model
 
 	public function scopePublished($query)
 	{
-		$query->whereNotNull('published_at')
+		$query->with(['owner', 'category', 'tags', 'photos'])
+					->whereNotNull('published_at')
 					->where('published_at', '<=', Carbon::now())
 					->latest('published_at');
 	}
