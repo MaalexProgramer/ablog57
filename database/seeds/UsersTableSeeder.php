@@ -13,13 +13,10 @@ class UsersTableSeeder extends Seeder
 		Role::truncate();
 		User::truncate();
 
-		$adminRole  = Role::create(['name' => 'Admin', 'display_name' => 'Administrador']);
+		$adminRole  = Role::create(['name' => 'Super Admin', 'display_name' => 'Administrador']);
 		$writerRole = Role::create(['name' => 'Writer', 'display_name' => 'Escritor']);
 
 		//================= Permisos ==========================
-
-
-
 		$viewPostsPermission = Permission::create([
 			'name' => 'View posts',
 			'display_name' => 'Ver publicaciones'
